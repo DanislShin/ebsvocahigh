@@ -1,0 +1,298 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBS 필수 영단어 Unit 1 with Audio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .audio-icon {
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-left: 5px;
+        }
+        .audio-icon:hover {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>EBS 필수 영단어 Unit 1</h1>
+    <p>단어 또는 예문 텍스트, 혹은 🔊 아이콘을 클릭하면 해당 문장을 발음합니다.</p>
+    <table>
+        <tr>
+            <th>단어</th>
+            <th>발음기호 (IPA)</th>
+            <th>품사</th>
+            <th>뜻</th>
+            <th>예문</th>
+            <th>해석</th>
+            <th>예문 발음기호</th>
+        </tr>
+        <tr>
+            <td>abandon <span class="audio-icon" onclick="speak('abandon')">🔊</span></td>
+            <td>/əˈbændən/</td>
+            <td>동사</td>
+            <td>버리다, 단념하다</td>
+            <td>They abandoned the car and ran away. <span class="audio-icon" onclick="speak('They abandoned the car and ran away.')">🔊</span></td>
+            <td>그들은 차를 버리고 달아났다.</td>
+            <td>/ðeɪ əˈbændənd ðə kɑːr ænd ræn əˈweɪ/</td>
+        </tr>
+        <tr>
+            <td>abolish <span class="audio-icon" onclick="speak('abolish')">🔊</span></td>
+            <td>/əˈbɑlɪʃ/</td>
+            <td>동사</td>
+            <td>폐지하다</td>
+            <td>He is in favor of abolishing the death penalty. <span class="audio-icon" onclick="speak('He is in favor of abolishing the death penalty.')">🔊</span></td>
+            <td>그는 사형제를 폐지하는 것에 찬성한다.</td>
+            <td>/hi ɪz ɪn ˈfeɪvər əv əˈbɑlɪʃɪŋ ðə dɛθ ˈpɛnəlti/</td>
+        </tr>
+        <tr>
+            <td>abroad <span class="audio-icon" onclick="speak('abroad')">🔊</span></td>
+            <td>/əˈbrɔːd/</td>
+            <td>부사</td>
+            <td>해외에서, 외국에서</td>
+            <td>He hopes to work abroad next year. <span class="audio-icon" onclick="speak('He hopes to work abroad next year.')">🔊</span></td>
+            <td>그는 내년에 해외에서 근무하길 희망한다.</td>
+            <td>/hi hoʊps tə wɜːrk əˈbrɔːd nɛkst jɪr/</td>
+        </tr>
+        <tr>
+            <td>abruptly <span class="audio-icon" onclick="speak('abruptly')">🔊</span></td>
+            <td>/əˈbrʌptli/</td>
+            <td>부사</td>
+            <td>갑작스럽게</td>
+            <td>The land dropped off abruptly. <span class="audio-icon" onclick="speak('The land dropped off abruptly.')">🔊</span></td>
+            <td>땅이 갑자기 푹 꺼졌다.</td>
+            <td>/ðə lænd drɑːpt ɔːf əˈbrʌptli/</td>
+        </tr>
+        <tr>
+            <td>absence <span class="audio-icon" onclick="speak('absence')">🔊</span></td>
+            <td>/ˈæbsəns/</td>
+            <td>명사</td>
+            <td>결석, 결근, 부재</td>
+            <td>Mark will be in charge in my absence. <span class="audio-icon" onclick="speak('Mark will be in charge in my absence.')">🔊</span></td>
+            <td>내가 없는 동안 Mark가 책임을 맡을 것이다.</td>
+            <td>/mɑːrk wɪl bi ɪn tʃɑːrdʒ ɪn maɪ ˈæbsəns/</td>
+        </tr>
+        <tr>
+            <td>absolutely <span class="audio-icon" onclick="speak('absolutely')">🔊</span></td>
+            <td>/ˌæbsəˈluːtli/</td>
+            <td>부사</td>
+            <td>절대적으로, 전혀</td>
+            <td>He has absolutely no experience in this field. <span class="audio-icon" onclick="speak('He has absolutely no experience in this field.')">🔊</span></td>
+            <td>그는 이 분야에 전혀 경험이 없다.</td>
+            <td>/hi hæz ˌæbsəˈluːtli noʊ ɪkˈspɪriəns ɪn ðɪs fiːld/</td>
+        </tr>
+        <tr>
+            <td>absorb <span class="audio-icon" onclick="speak('absorb')">🔊</span></td>
+            <td>/əbˈzɔːrb/</td>
+            <td>동사</td>
+            <td>흡수하다</td>
+            <td>Plant roots absorb moisture. <span class="audio-icon" onclick="speak('Plant roots absorb moisture.')">🔊</span></td>
+            <td>식 \n물의 뿌리는 수분을 흡수한다.</td>
+            <td>/plænt ruːts əbˈzɔːrb ˈmɔɪstʃər/</td>
+        </tr>
+        <tr>
+            <td>abstract <span class="audio-icon" onclick="speak('abstract')">🔊</span></td>
+            <td>/ˈæbstrækt/</td>
+            <td>형용사</td>
+            <td>추상적인</td>
+            <td>Human beings are capable of abstract thought. <span class="audio-icon" onclick="speak('Human beings are capable of abstract thought.')">🔊</span></td>
+            <td>인간은 추상적 사고를 할 수 있다.</td>
+            <td>/ˈhjuːmən ˈbiːɪŋz ɑːr ˈkeɪpəbl əv ˈæbstrækt θɔːt/</td>
+        </tr>
+        <tr>
+            <td>abundant <span class="audio-icon" onclick="speak('abundant')">🔊</span></td>
+            <td>/əˈbʌndənt/</td>
+            <td>형용사</td>
+            <td>풍부한</td>
+            <td>Rainfall is abundant in the region. <span class="audio-icon" onclick="speak('Rainfall is abundant in the region.')">🔊</span></td>
+            <td>그 지역은 강수량이 풍부하다.</td>
+            <td>/ˈreɪnfɔːl ɪz əˈbʌndənt ɪn ðə ˈriːdʒən/</td>
+        </tr>
+        <tr>
+            <td>abuse <span class="audio-icon" onclick="speak('abuse')">🔊</span></td>
+            <td>/əˈbjuːs/ (명사) /əbˈjuːz/ (동사)</td>
+            <td>명사</td>
+            <td>학대, 남용</td>
+            <td>The boy was a victim of abuse. <span class="audio-icon" onclick="speak('The boy was a victim of abuse.')">🔊</span></td>
+            <td>그 소년은 학대의 피해자였다.</td>
+            <td>/ðə bɔɪ wəz ə ˈvɪktɪm əv əˈbjuːs/</td>
+        </tr>
+        <tr>
+            <td>accelerate <span class="audio-icon" onclick="speak('accelerate')">🔊</span></td>
+            <td>/əkˈseləreɪt/</td>
+            <td>동사</td>
+            <td>가속하다</td>
+            <td>The car accelerated to a speed of 80 miles per hour. <span class="audio-icon" onclick="speak('The car accelerated to a speed of 80 miles per hour.')">🔊</span></td>
+            <td>그 차는 시속 80마일까지 속도를 높였다.</td>
+            <td>/ðə kɑːr əkˈseləreɪtɪd tə ə spiːd əv ˈeɪti maɪlz pər aʊər/</td>
+        </tr>
+        <tr>
+            <td>accept <span class="audio-icon" onclick="speak('accept')">🔊</span></td>
+            <td>/əkˈsept/</td>
+            <td>동사</td>
+            <td>받아들이다, 수용하다</td>
+            <td>They offered me a job and I accepted it. <span class="audio-icon" onclick="speak('They offered me a job and I accepted it.')">🔊</span></td>
+            <td>그들은 내게 일자리를 제공했고, 나는 그것을 수용했다.</td>
+            <td>/ðeɪ ˈɔːfərd mi ə dʒɑːb ænd aɪ əkˈseptɪd ɪt/</td>
+        </tr>
+        <tr>
+            <td>access <span class="audio-icon" onclick="speak('access')">🔊</span></td>
+            <td>/ˈækses/</td>
+            <td>명사</td>
+            <td>접속, 입장</td>
+            <td>We have Internet access at the library. <span class="audio-icon" onclick="speak('We have Internet access at the library.')">🔊</span></td>
+            <td>우리는 도서관에서 인터넷에 접속할 수 있다.</td>
+            <td>/wi hæv ˈɪntərˌnɛt ˈækses æt ðə ˈlaɪbrɛri/</td>
+        </tr>
+        <tr>
+            <td>accidentally <span class="audio-icon" onclick="speak('accidentally')">🔊</span></td>
+            <td>/ˌæksəˈdentəli/</td>
+            <td>부사</td>
+            <td>우연히, 실수로</td>
+            <td>They believe that the fire was started accidentally. <span class="audio-icon" onclick="speak('They believe that the fire was started accidentally.')">🔊</span></td>
+            <td>그 화재는 우발적으로 시작된 것으로 믿고 있다.</td>
+            <td>/ðeɪ bɪˈliːv ðæt ðə faɪər wəz ˈstɑːrtɪd ˌæksəˈdentəli/</td>
+        </tr>
+        <tr>
+            <td>accommodate <span class="audio-icon" onclick="speak('accommodate')">🔊</span></td>
+            <td>/əˈkɑːmədeɪt/</td>
+            <td>동사</td>
+            <td>수용하다</td>
+            <td>The hotel can only accommodate about 100 people. <span class="audio-icon" onclick="speak('The hotel can only accommodate about 100 people.')">🔊</span></td>
+            <td>그 호텔은 겨우 100명 정도만 수용할 수 있다.</td>
+            <td>/ðə hoʊˈtɛl kæn ˈoʊnli əˈkɑːmədeɪt əˈbaʊt wʌn ˈhʌndrəd ˈpiːpl/</td>
+        </tr>
+        <tr>
+            <td>accompany <span class="audio-icon" onclick="speak('accompany')">🔊</span></td>
+            <td>/əˈkʌmpəni/</td>
+            <td>동사</td>
+            <td>동행하다</td>
+            <td>I want you to accompany her. <span class="audio-icon" onclick="speak('I want you to accompany her.')">🔊</span></td>
+            <td>난 네가 그녀와 함께 가길 바란다.</td>
+            <td>/aɪ wɑːnt ju tə əˈkʌmpəni hər/</td>
+        </tr>
+        <tr>
+            <td>accomplish <span class="audio-icon" onclick="speak('accomplish')">🔊</span></td>
+            <td>/əˈkɑːmplɪʃ/</td>
+            <td>동사</td>
+            <td>달성하다</td>
+            <td>We have accomplished much in a short period of time. <span class="audio-icon" onclick="speak('We have accomplished much in a short period of time.')">🔊</span></td>
+            <td>우리는 짧은 시간에 많은 것을 이루었다.</td>
+            <td>/wi hæv əˈkɑːmplɪʃt mʌtʃ ɪn ə ʃɔːrt ˈpɪriəd əv taɪm/</td>
+        </tr>
+        <tr>
+            <td>according to <span class="audio-icon" onclick="speak('according to')">🔊</span></td>
+            <td>/əˈkɔːrdɪŋ tuː/</td>
+            <td>전치사</td>
+            <td>~에 따르면</td>
+            <td>According to the law, we had to pay a small fine. <span class="audio-icon" onclick="speak('According to the law, we had to pay a small fine.')">🔊</span></td>
+            <td>법에 따라 우리는 벌금을 내야 했다.</td>
+            <td>/əˈkɔːrdɪŋ tə ðə lɔː wi hæd tə peɪ ə smɔːl faɪn/</td>
+        </tr>
+        <tr>
+            <td>accordingly <span class="audio-icon" onclick="speak('accordingly')">🔊</span></td>
+            <td>/əˈkɔːrdɪŋli/</td>
+            <td>부사</td>
+            <td>따라서</td>
+            <td>No complaint was made. Accordingly, they took no action. <span class="audio-icon" onclick="speak('No complaint was made. Accordingly, they took no action.')">🔊</span></td>
+            <td>불평이 없었기에, 그들은 아무 조치도 취하지 않았다.</td>
+            <td>/noʊ kəmˈpleɪnt wəz meɪd əˈkɔːrdɪŋli ðeɪ tʊk noʊ ˈækʃən/</td>
+        </tr>
+        <tr>
+            <td>account for <span class="audio-icon" onclick="speak('account for')">🔊</span></td>
+            <td>/əˈkaʊnt fɔːr/</td>
+            <td>동사</td>
+            <td>~를 차지하다, 설명하다</td>
+            <td>African-Americans account for about 13% of the US population. <span class="audio-icon" onclick="speak('African-Americans account for about 13% of the US population.')">🔊</span></td>
+            <td>흑인은 미국 인구의 약 13%를 차지한다.</td>
+            <td>/ˌæfrɪkən əˈmɛrɪkənz əˈkaʊnt fər əˈbaʊt ˌθɜːrˈtiːn pərˈsɛnt əv ðə juˈɛs pɑːpjəˈleɪʃən/</td>
+        </tr>
+        <tr>
+            <td>account <span class="audio-icon" onclick="speak('account')">🔊</span></td>
+            <td>/əˈkaʊnt/</td>
+            <td>명사</td>
+            <td>설명, 이야기, 계좌</td>
+            <td>He gave a brief account of what had happened. <span class="audio-icon" onclick="speak('He gave a brief account of what had happened.')">🔊</span></td>
+            <td>그는 무슨 일이 있었는지 간단히 설명했다.</td>
+            <td>/hi geɪv ə briːf əˈkaʊnt əv wʌt hæd ˈhæpənd/</td>
+        </tr>
+        <tr>
+            <td>accountable <span class="audio-icon" onclick="speak('accountable')">🔊</span></td>
+            <td>/əˈkaʊntəbl/</td>
+            <td>형용사</td>
+            <td>책임이 있는</td>
+            <td>Managers must be accountable for their decisions. <span class="audio-icon" onclick="speak('Managers must be accountable for their decisions.')">🔊</span></td>
+            <td>관리자들은 그들의 결정에 책임을 져야 한다.</td>
+            <td>/ˈmænɪdʒərz mʌst bi əˈkaʊntəbl fər ðɛr dɪˈsɪʒənz/</td>
+        </tr>
+    </table>
+
+    <script>
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
