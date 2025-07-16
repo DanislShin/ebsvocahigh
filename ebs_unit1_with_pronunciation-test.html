@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EBS 필수 영단어 Unit 1 with Pronunciation Practice</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        color: #4a5568;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .microphone-notice {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        padding: 15px;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .microphone-notice button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: transform 0.2s;
+      }
+      .microphone-notice button:hover {
+        transform: translateY(-2px);
+      }
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        text-align: center;
+      }
+      .stat-item {
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        min-width: 120px;
+      }
+      .stat-item h3 {
+        margin: 0 0 10px 0;
+        color: #4a5568;
+      }
+      .stat-item p {
+        margin: 0;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #2d3748;
+      }
+      .controls {
+        text-align: center;
+        margin: 20px 0;
+      }
+      .controls button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: transform 0.2s;
+      }
+      .controls button:hover {
+        transform: translateY(-2px);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      th,
+      td {
+        border: 1px solid #e2e8f0;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-weight: bold;
+      }
+      tr:nth-child(even) {
+        background: #f8f9fa;
+      }
+      .word-cell {
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #2d3748;
+      }
+      .ipa-cell {
+        font-family: "Courier New", monospace;
+        color: #e53e3e;
+      }
+      .meaning-cell {
+        color: #2b6cb0;
+      }
+      .example-cell {
+        font-style: italic;
+        color: #4a5568;
+      }
+      .translation-cell {
+        color: #38a169;
+      }
+      .practice-cell {
+        text-align: center;
+      }
+      .practice-btn {
+        background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        margin: 2px;
+        border-radius: 15px;
+        cursor: pointer;
+        font-size: 0.9em;
+        transition: transform 0.2s;
+      }
+      .practice-btn:hover {
+        transform: scale(1.05);
+      }
+      .record-btn {
+        background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+      }
+      .feedback {
+        display: block;
+        margin-top: 5px;
+        font-size: 0.8em;
+        font-weight: bold;
+        min-height: 40px;
+        padding: 5px;
+        border-radius: 5px;
+        background: #f8f9fa;
+      }
+      .feedback.success {
+        color: #38a169;
+        background: #e6fffa;
+        border: 1px solid #38a169;
+      }
+      .feedback.error {
+        color: #e53e3e;
+        background: #fed7d7;
+        border: 1px solid #e53e3e;
+      }
+      .feedback.warning {
+        color: #d69e2e;
+        background: #fefcbf;
+        border: 1px solid #d69e2e;
+      }
+      .speech-comparison {
+        margin-top: 8px;
+        padding: 8px;
+        background: #f7fafc;
+        border-radius: 5px;
+        border: 1px solid #e2e8f0;
+        font-size: 0.75em;
+      }
+      .target-text {
+        color: #2d3748;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      .spoken-text {
+        color: #4a5568;
+        margin-bottom: 4px;
+      }
+      .word-match {
+        display: inline-block;
+        padding: 2px 4px;
+        margin: 1px;
+        border-radius: 3px;
+      }
+      .word-correct {
+        background: #c6f6d5;
+        color: #22543d;
+      }
+      .word-incorrect {
+        background: #fed7d7;
+        color: #742a2a;
+      }
+      .word-missing {
+        background: #fbb6ce;
+        color: #702459;
+      }
+      .word-extra {
+        background: #feebc8;
+        color: #7b341e;
+      }
+      .speaker-icon {
+        cursor: pointer;
+        color: #4299e1;
+        font-size: 1.2em;
+      }
+      .speaker-icon:hover {
+        color: #2b6cb0;
+      }
+      .recording {
+        background: linear-gradient(135deg, #fc8181 0%, #e53e3e 100%);
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .progress-bar {
+        width: 100%;
+        height: 4px;
+        background: #e2e8f0;
+        border-radius: 2px;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+        width: 0%;
+        transition: width 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>EBS 필수 영단어 Unit 1 with Pronunciation Practice</h1>
+
+      <div class="microphone-notice" id="microphoneNotice">
+        <h2>🎤 Microphone Access Required</h2>
+        <p>
+          Please allow microphone access for voice recording and recognition
+          features.
+        </p>
+        <button onclick="requestMicrophone()">Allow Microphone Access</button>
+        <p>
+          ※ Voice data is not stored on any server and is processed only in your
+          browser.
+        </p>
+      </div>
+
+      <div class="stats">
+        <div class="stat-item">
+          <h3>Words Practiced</h3>
+          <p id="wordsPracticed">0</p>
+        </div>
+        <div class="stat-item">
+          <h3>Average Accuracy</h3>
+          <p id="averageAccuracy">0%</p>
+        </div>
+        <div class="stat-item">
+          <h3>90%+ Accuracy</h3>
+          <p id="highAccuracy">0</p>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <div class="controls">
+        <button onclick="downloadRecordings()">
+          📥 Download All Recordings
+        </button>
+        <button onclick="resetProgress()">🔄 Reset Progress</button>
+        <button onclick="toggleAutoPlay()" id="autoPlayBtn">
+          🔊 Auto Play: OFF
+        </button>
+        <button onclick="generateReport()">📊 Generate Report</button>
+      </div>
+
+      <table>
+        <tr>
+          <th>Word</th>
+          <th>IPA</th>
+          <th>Part of Speech</th>
+          <th>Meaning</th>
+          <th>Example Sentence</th>
+          <th>Translation</th>
+          <th>IPA (Example)</th>
+          <th>Practice</th>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            abandon
+            <span class="speaker-icon" onclick="playWord('abandon')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈbændən/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">버리다, 단념하다</td>
+          <td class="example-cell">
+            They abandoned the car and ran away.
+            <span class="speaker-icon" onclick="playSentence('abandon')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">그들은 차를 버리고 달아났다.</td>
+          <td class="ipa-cell">/ðeɪ əˈbændənd ðə kɑːr ænd ræn əˈweɪ/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('abandon')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('abandon')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('abandon')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('abandon')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-abandon"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            abolish
+            <span class="speaker-icon" onclick="playWord('abolish')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈbɑlɪʃ/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">폐지하다</td>
+          <td class="example-cell">
+            He is in favor of abolishing the death penalty.
+            <span class="speaker-icon" onclick="playSentence('abolish')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            그는 사형제를 폐지하는 것에 찬성한다.
+          </td>
+          <td class="ipa-cell">
+            /hi ɪz ɪn ˈfeɪvər əv əˈbɑlɪʃɪŋ ðə dɛθ ˈpɛnəlti/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('abolish')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('abolish')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('abolish')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('abolish')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-abolish"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            abroad
+            <span class="speaker-icon" onclick="playWord('abroad')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈbrɔːd/</td>
+          <td>Adverb</td>
+          <td class="meaning-cell">해외에서, 외국에서</td>
+          <td class="example-cell">
+            He hopes to work abroad next year.
+            <span class="speaker-icon" onclick="playSentence('abroad')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            그는 내년에 해외에서 근무하길 희망한다.
+          </td>
+          <td class="ipa-cell">/hi hoʊps tə wɜːrk əˈbrɔːd nɛkst jɪr/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('abroad')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('abroad')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('abroad')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('abroad')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-abroad"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            abruptly
+            <span class="speaker-icon" onclick="playWord('abruptly')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈbrʌptli/</td>
+          <td>Adverb</td>
+          <td class="meaning-cell">갑작스럽게</td>
+          <td class="example-cell">
+            The land dropped off abruptly.
+            <span class="speaker-icon" onclick="playSentence('abruptly')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">땅이 갑자기 푹 꺼졌다.</td>
+          <td class="ipa-cell">/ðə lænd drɑːpt ɔːf əˈbrʌptli/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('abruptly')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('abruptly')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('abruptly')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('abruptly')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-abruptly"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            absence
+            <span class="speaker-icon" onclick="playWord('absence')">🔊</span>
+          </td>
+          <td class="ipa-cell">/ˈæbsəns/</td>
+          <td>Noun</td>
+          <td class="meaning-cell">결석, 결근, 부재</td>
+          <td class="example-cell">
+            Mark will be in charge in my absence.
+            <span class="speaker-icon" onclick="playSentence('absence')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            내가 없는 동안 Mark가 책임을 맡을 것이다.
+          </td>
+          <td class="ipa-cell">/mɑːrk wɪl bi ɪn tʃɑːrdʒ ɪn maɪ ˈæbsəns/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('absence')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('absence')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('absence')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('absence')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-absence"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            absolutely
+            <span class="speaker-icon" onclick="playWord('absolutely')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/ˌæbsəˈluːtli/</td>
+          <td>Adverb</td>
+          <td class="meaning-cell">절대적으로, 전혀</td>
+          <td class="example-cell">
+            He has absolutely no experience in this field.
+            <span class="speaker-icon" onclick="playSentence('absolutely')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">그는 이 분야에 전혀 경험이 없다.</td>
+          <td class="ipa-cell">
+            /hi hæz ˌæbsəˈluːtli noʊ ɪkˈspɪriəns ɪn ðɪs fiːld/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('absolutely')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('absolutely')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('absolutely')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('absolutely')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-absolutely"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            absorb
+            <span class="speaker-icon" onclick="playWord('absorb')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əbˈzɔːrb/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">흡수하다</td>
+          <td class="example-cell">
+            Plant roots absorb moisture.
+            <span class="speaker-icon" onclick="playSentence('absorb')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">식물의 뿌리는 수분을 흡수한다.</td>
+          <td class="ipa-cell">/plænt ruːts əbˈzɔːrb ˈmɔɪstʃər/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('absorb')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('absorb')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('absorb')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('absorb')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-absorb"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            abstract
+            <span class="speaker-icon" onclick="playWord('abstract')">🔊</span>
+          </td>
+          <td class="ipa-cell">/ˈæbstrækt/</td>
+          <td>Adjective</td>
+          <td class="meaning-cell">추상적인</td>
+          <td class="example-cell">
+            Human beings are capable of abstract thought.
+            <span class="speaker-icon" onclick="playSentence('abstract')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">인간은 추상적 사고를 할 수 있다.</td>
+          <td class="ipa-cell">
+            /ˈhjuːmən ˈbiːɪŋz ɑːr ˈkeɪpəbl əv ˈæbstrækt θɔːt/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('abstract')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('abstract')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('abstract')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('abstract')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-abstract"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            abundant
+            <span class="speaker-icon" onclick="playWord('abundant')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈbʌndənt/</td>
+          <td>Adjective</td>
+          <td class="meaning-cell">풍부한</td>
+          <td class="example-cell">
+            Rainfall is abundant in the region.
+            <span class="speaker-icon" onclick="playSentence('abundant')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">그 지역은 강수량이 풍부하다.</td>
+          <td class="ipa-cell">/ˈreɪnfɔːl ɪz əˈbʌndənt ɪn ðə ˈriːdʒən/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('abundant')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('abundant')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('abundant')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('abundant')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-abundant"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            abuse
+            <span class="speaker-icon" onclick="playWord('abuse')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈbjuːs/ (명사) /əbˈjuːz/ (동사)</td>
+          <td>Noun</td>
+          <td class="meaning-cell">학대, 남용</td>
+          <td class="example-cell">
+            The boy was a victim of abuse.
+            <span class="speaker-icon" onclick="playSentence('abuse')">🔊</span>
+          </td>
+          <td class="translation-cell">그 소년은 학대의 피해자였다.</td>
+          <td class="ipa-cell">/ðə bɔɪ wəz ə ˈvɪktɪm əv əˈbjuːs/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('abuse')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('abuse')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('abuse')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('abuse')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-abuse"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accelerate
+            <span class="speaker-icon" onclick="playWord('accelerate')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/əkˈseləreɪt/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">가속하다</td>
+          <td class="example-cell">
+            The car accelerated to a speed of 80 miles per hour.
+            <span class="speaker-icon" onclick="playSentence('accelerate')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            그 차는 시속 80마일까지 속도를 높였다.
+          </td>
+          <td class="ipa-cell">
+            /ðə kɑːr əkˈseləreɪtɪd tə ə spiːd əv ˈeɪti maɪlz pər aʊər/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accelerate')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accelerate')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accelerate')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('accelerate')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accelerate"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accept
+            <span class="speaker-icon" onclick="playWord('accept')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əkˈsept/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">받아들이다, 수용하다</td>
+          <td class="example-cell">
+            They offered me a job and I accepted it.
+            <span class="speaker-icon" onclick="playSentence('accept')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            그들은 내게 일자리를 제공했고, 나는 그것을 수용했다.
+          </td>
+          <td class="ipa-cell">/ðeɪ ˈɔːfərd mi ə dʒɑːb ænd aɪ əkˈseptɪd ɪt/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accept')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accept')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accept')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('accept')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accept"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            access
+            <span class="speaker-icon" onclick="playWord('access')">🔊</span>
+          </td>
+          <td class="ipa-cell">/ˈækses/</td>
+          <td>Noun</td>
+          <td class="meaning-cell">접속, 입장</td>
+          <td class="example-cell">
+            We have Internet access at the library.
+            <span class="speaker-icon" onclick="playSentence('access')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            우리는 도서관에서 인터넷에 접속할 수 있다.
+          </td>
+          <td class="ipa-cell">/wi hæv ˈɪntərˌnɛt ˈækses æt ðə ˈlaɪbrɛri/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('access')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('access')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('access')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('access')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-access"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accidentally
+            <span class="speaker-icon" onclick="playWord('accidentally')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/ˌæksəˈdentəli/</td>
+          <td>Adverb</td>
+          <td class="meaning-cell">우연히, 실수로</td>
+          <td class="example-cell">
+            They believe that the fire was started accidentally.
+            <span class="speaker-icon" onclick="playSentence('accidentally')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            그 화재는 우발적으로 시작된 것으로 믿고 있다.
+          </td>
+          <td class="ipa-cell">
+            /ðeɪ bɪˈliːv ðæt ðə faɪər wəz ˈstɑːrtɪd ˌæksəˈdentəli/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accidentally')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accidentally')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accidentally')">
+              🗣️ Check Word</button
+            ><br />
+            <button
+              class="practice-btn"
+              onclick="checkSentence('accidentally')"
+            >
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accidentally"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accommodate
+            <span class="speaker-icon" onclick="playWord('accommodate')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/əˈkɑːmədeɪt/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">수용하다</td>
+          <td class="example-cell">
+            The hotel can only accommodate about 100 people.
+            <span class="speaker-icon" onclick="playSentence('accommodate')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            그 호텔은 겨우 100명 정도만 수용할 수 있다.
+          </td>
+          <td class="ipa-cell">
+            /ðə hoʊˈtɛl kæn ˈoʊnli əˈkɑːmədeɪt əˈbaʊt wʌn ˈhʌndrəd ˈpiːpl/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accommodate')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accommodate')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accommodate')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('accommodate')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accommodate"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accompany
+            <span class="speaker-icon" onclick="playWord('accompany')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈkʌmpəni/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">동행하다</td>
+          <td class="example-cell">
+            I want you to accompany her.
+            <span class="speaker-icon" onclick="playSentence('accompany')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">난 네가 그녀와 함께 가길 바란다.</td>
+          <td class="ipa-cell">/aɪ wɑːnt ju tə əˈkʌmpəni hər/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accompany')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accompany')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accompany')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('accompany')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accompany"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accomplish
+            <span class="speaker-icon" onclick="playWord('accomplish')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/əˈkɑːmplɪʃ/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">달성하다</td>
+          <td class="example-cell">
+            We have accomplished much in a short period of time.
+            <span class="speaker-icon" onclick="playSentence('accomplish')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            우리는 짧은 시간에 많은 것을 이루었다.
+          </td>
+          <td class="ipa-cell">
+            /wi hæv əˈkɑːmplɪʃt mʌtʃ ɪn ə ʃɔːrt ˈpɪriəd əv taɪm/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accomplish')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accomplish')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accomplish')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('accomplish')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accomplish"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            according to
+            <span class="speaker-icon" onclick="playWord('according to')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/əˈkɔːrdɪŋ tuː/</td>
+          <td>Preposition</td>
+          <td class="meaning-cell">~에 따르면</td>
+          <td class="example-cell">
+            According to the law, we had to pay a small fine.
+            <span class="speaker-icon" onclick="playSentence('according to')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">법에 따라 우리는 벌금을 내야 했다.</td>
+          <td class="ipa-cell">
+            /əˈkɔːrdɪŋ tə ðə lɔː wi hæd tə peɪ ə smɔːl faɪn/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('according to')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('according to')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('according to')">
+              🗣️ Check Word</button
+            ><br />
+            <button
+              class="practice-btn"
+              onclick="checkSentence('according to')"
+            >
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-according to"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accordingly
+            <span class="speaker-icon" onclick="playWord('accordingly')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/əˈkɔːrdɪŋli/</td>
+          <td>Adverb</td>
+          <td class="meaning-cell">따라서</td>
+          <td class="example-cell">
+            No complaint was made. Accordingly, they took no action.
+            <span class="speaker-icon" onclick="playSentence('accordingly')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            불평이 없었기에, 그들은 아무 조치도 취하지 않았다.
+          </td>
+          <td class="ipa-cell">
+            /noʊ kəmˈpleɪnt wəz meɪd əˈkɔːrdɪŋli ðeɪ tʊk noʊ ˈækʃən/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accordingly')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accordingly')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accordingly')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('accordingly')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accordingly"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            account for
+            <span class="speaker-icon" onclick="playWord('account for')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/əˈkaʊnt fɔːr/</td>
+          <td>Verb</td>
+          <td class="meaning-cell">~를 차지하다, 설명하다</td>
+          <td class="example-cell">
+            African-Americans account for about 13% of the US population.
+            <span class="speaker-icon" onclick="playSentence('account for')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            흑인은 미국 인구의 약 13%를 차지한다.
+          </td>
+          <td class="ipa-cell">
+            /ˌæfrɪkən əˈmɛrɪkənz əˈkaʊnt fər əˈbaʊt ˌθɜːrˈtiːn pərˈsɛnt əv ðə
+            juˈɛs pɑːpjəˈleɪʃən/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('account for')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('account for')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('account for')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('account for')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-account for"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            account
+            <span class="speaker-icon" onclick="playWord('account')">🔊</span>
+          </td>
+          <td class="ipa-cell">/əˈkaʊnt/</td>
+          <td>Noun</td>
+          <td class="meaning-cell">설명, 이야기, 계좌</td>
+          <td class="example-cell">
+            He gave a brief account of what had happened.
+            <span class="speaker-icon" onclick="playSentence('account')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            그는 무슨 일이 있었는지 간단히 설명했다.
+          </td>
+          <td class="ipa-cell">/hi geɪv ə briːf əˈkaʊnt əv wʌt hæd ˈhæpənd/</td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('account')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('account')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('account')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('account')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-account"></span>
+          </td>
+        </tr>
+        <tr>
+          <td class="word-cell">
+            accountable
+            <span class="speaker-icon" onclick="playWord('accountable')"
+              >🔊</span
+            >
+          </td>
+          <td class="ipa-cell">/əˈkaʊntəbl/</td>
+          <td>Adjective</td>
+          <td class="meaning-cell">책임이 있는</td>
+          <td class="example-cell">
+            Managers must be accountable for their decisions.
+            <span class="speaker-icon" onclick="playSentence('accountable')"
+              >🔊</span
+            >
+          </td>
+          <td class="translation-cell">
+            관리자들은 그들의 결정에 책임을 져야 한다.
+          </td>
+          <td class="ipa-cell">
+            /ˈmænɪdʒərz mʌst bi əˈkaʊntəbl fər ðɛr dɪˈsɪʒənz/
+          </td>
+          <td class="practice-cell">
+            <button class="practice-btn" onclick="playAll('accountable')">
+              ▶️ Play All</button
+            ><br />
+            <button
+              class="practice-btn record-btn"
+              onclick="recordWord('accountable')"
+            >
+              🎙️ Record</button
+            ><br />
+            <button class="practice-btn" onclick="checkWord('accountable')">
+              🗣️ Check Word</button
+            ><br />
+            <button class="practice-btn" onclick="checkSentence('accountable')">
+              🗣️ Check Sentence
+            </button>
+            <span class="feedback" id="feedback-accountable"></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      // 전역 변수
+      let mediaRecorder;
+      let audioChunks = [];
+      let isRecording = false;
+      let microphoneGranted = false;
+      let autoPlay = false;
+      let recordings = {};
+      let stats = {
+        wordsPracticed: 0,
+        totalAccuracy: 0,
+        highAccuracyCount: 0,
+      };
+
+      // 음성 합성 설정
+      const synth = window.speechSynthesis;
+      let voices = [];
+
+      // 단어 데이터
+      const wordData = {
+        abandon: {
+          word: "abandon",
+          ipa: "/əˈbændən/",
+          sentence: "They abandoned the car and ran away.",
+          sentenceIPA: "/ðeɪ əˈbændənd ðə kɑːr ænd ræn əˈweɪ/",
+        },
+        abolish: {
+          word: "abolish",
+          ipa: "/əˈbɑlɪʃ/",
+          sentence: "He is in favor of abolishing the death penalty.",
+          sentenceIPA: "/hi ɪz ɪn ˈfeɪvər əv əˈbɑlɪʃɪŋ ðə dɛθ ˈpɛnəlti/",
+        },
+        abroad: {
+          word: "abroad",
+          ipa: "/əˈbrɔːd/",
+          sentence: "He hopes to work abroad next year.",
+          sentenceIPA: "/hi hoʊps tə wɜːrk əˈbrɔːd nɛkst jɪr/",
+        },
+        abruptly: {
+          word: "abruptly",
+          ipa: "/əˈbrʌptli/",
+          sentence: "The land dropped off abruptly.",
+          sentenceIPA: "/ðə lænd drɑːpt ɔːf əˈbrʌptli/",
+        },
+        absence: {
+          word: "absence",
+          ipa: "/ˈæbsəns/",
+          sentence: "Mark will be in charge in my absence.",
+          sentenceIPA: "/mɑːrk wɪl bi ɪn tʃɑːrdʒ ɪn maɪ ˈæbsəns/",
+        },
+        absolutely: {
+          word: "absolutely",
+          ipa: "/ˌæbsəˈluːtli/",
+          sentence: "He has absolutely no experience in this field.",
+          sentenceIPA: "/hi hæz ˌæbsəˈluːtli noʊ ɪkˈspɪriəns ɪn ðɪs fiːld/",
+        },
+        absorb: {
+          word: "absorb",
+          ipa: "/əbˈzɔːrb/",
+          sentence: "Plant roots absorb moisture.",
+          sentenceIPA: "/plænt ruːts əbˈzɔːrb ˈmɔɪstʃər/",
+        },
+        abstract: {
+          word: "abstract",
+          ipa: "/ˈæbstrækt/",
+          sentence: "Human beings are capable of abstract thought.",
+          sentenceIPA: "/ˈhjuːmən ˈbiːɪŋz ɑːr ˈkeɪpəbl əv ˈæbstrækt θɔːt/",
+        },
+        abundant: {
+          word: "abundant",
+          ipa: "/əˈbʌndənt/",
+          sentence: "Rainfall is abundant in the region.",
+          sentenceIPA: "/ˈreɪnfɔːl ɪz əˈbʌndənt ɪn ðə ˈriːdʒən/",
+        },
+        abuse: {
+          word: "abuse",
+          ipa: "/əˈbjuːs/",
+          sentence: "The boy was a victim of abuse.",
+          sentenceIPA: "/ðə bɔɪ wəz ə ˈvɪktɪm əv əˈbjuːs/",
+        },
+        accelerate: {
+          word: "accelerate",
+          ipa: "/əkˈseləreɪt/",
+          sentence: "The car accelerated to a speed of 80 miles per hour.",
+          sentenceIPA:
+            "/ðə kɑːr əkˈseləreɪtɪd tə ə spiːd əv ˈeɪti maɪlz pər aʊər/",
+        },
+        accept: {
+          word: "accept",
+          ipa: "/əkˈsept/",
+          sentence: "They offered me a job and I accepted it.",
+          sentenceIPA: "/ðeɪ ˈɔːfərd mi ə dʒɑːb ænd aɪ əkˈseptɪd ɪt/",
+        },
+        access: {
+          word: "access",
+          ipa: "/ˈækses/",
+          sentence: "We have Internet access at the library.",
+          sentenceIPA: "/wi hæv ˈɪntərˌnɛt ˈækses æt ðə ˈlaɪbrɛri/",
+        },
+        accidentally: {
+          word: "accidentally",
+          ipa: "/ˌæksəˈdentəli/",
+          sentence: "They believe that the fire was started accidentally.",
+          sentenceIPA: "/ðeɪ bɪˈliːv ðæt ðə faɪər wəz ˈstɑːrtɪd ˌæksəˈdentəli/",
+        },
+        accommodate: {
+          word: "accommodate",
+          ipa: "/əˈkɑːmədeɪt/",
+          sentence: "The hotel can only accommodate about 100 people.",
+          sentenceIPA:
+            "/ðə hoʊˈtɛl kæn ˈoʊnli əˈkɑːmədeɪt əˈbaʊt wʌn ˈhʌndrəd ˈpiːpl/",
+        },
+        accompany: {
+          word: "accompany",
+          ipa: "/əˈkʌmpəni/",
+          sentence: "I want you to accompany her.",
+          sentenceIPA: "/aɪ wɑːnt ju tə əˈkʌmpəni hər/",
+        },
+        accomplish: {
+          word: "accomplish",
+          ipa: "/əˈkɑːmplɪʃ/",
+          sentence: "We have accomplished much in a short period of time.",
+          sentenceIPA: "/wi hæv əˈkɑːmplɪʃt mʌtʃ ɪn ə ʃɔːrt ˈpɪriəd əv taɪm/",
+        },
+        "according to": {
+          word: "according to",
+          ipa: "/əˈkɔːrdɪŋ tuː/",
+          sentence: "According to the law, we had to pay a small fine.",
+          sentenceIPA: "/əˈkɔːrdɪŋ tə ðə lɔː wi hæd tə peɪ ə smɔːl faɪn/",
+        },
+        accordingly: {
+          word: "accordingly",
+          ipa: "/əˈkɔːrdɪŋli/",
+          sentence: "No complaint was made. Accordingly, they took no action.",
+          sentenceIPA:
+            "/noʊ kəmˈpleɪnt wəz meɪd əˈkɔːrdɪŋli ðeɪ tʊk noʊ ˈækʃən/",
+        },
+        "account for": {
+          word: "account for",
+          ipa: "/əˈkaʊnt fɔːr/",
+          sentence:
+            "African-Americans account for about 13% of the US population.",
+          sentenceIPA:
+            "/ˌæfrɪkən əˈmɛrɪkənz əˈkaʊnt fər əˈbaʊt ˌθɜːrˈtiːn pərˈsɛnt əv ðə juˈɛs pɑːpjəˈleɪʃən/",
+        },
+        account: {
+          word: "account",
+          ipa: "/əˈkaʊnt/",
+          sentence: "He gave a brief account of what had happened.",
+          sentenceIPA: "/hi geɪv ə briːf əˈkaʊnt əv wʌt hæd ˈhæpənd/",
+        },
+        accountable: {
+          word: "accountable",
+          ipa: "/əˈkaʊntəbl/",
+          sentence: "Managers must be accountable for their decisions.",
+          sentenceIPA: "/ˈmænɪdʒərz mʌst bi əˈkaʊntəbl fər ðɛr dɪˈsɪʒənz/",
+        },
+      };
+
+      // 음성 초기화
+      function initVoices() {
+        voices = synth.getVoices();
+        if (voices.length === 0) {
+          synth.addEventListener("voiceschanged", () => {
+            voices = synth.getVoices();
+          });
+        }
+      }
+
+      // 영어 음성 찾기
+      function getEnglishVoice() {
+        return voices.find((voice) => voice.lang.startsWith("en")) || voices[0];
+      }
+
+      // 텍스트 음성 변환
+      function speak(text, rate = 0.8) {
+        if (!synth) return;
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        const voice = getEnglishVoice();
+        if (voice) utterance.voice = voice;
+        utterance.rate = rate;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+
+        synth.speak(utterance);
+      }
+
+      // 마이크 권한 요청
+      async function requestMicrophone() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+          });
+          microphoneGranted = true;
+          document.getElementById("microphoneNotice").style.display = "none";
+          showFeedback(
+            "",
+            "Microphone access granted! You can now use voice features.",
+            "success"
+          );
+          stream.getTracks().forEach((track) => track.stop());
+        } catch (error) {
+          showFeedback(
+            "",
+            "Microphone access denied. Voice features will not work.",
+            "error"
+          );
+        }
+      }
+
+      // 단어 재생
+      function playWord(word) {
+        if (wordData[word]) {
+          speak(wordData[word].word, 0.7);
+        }
+      }
+
+      // 문장 재생
+      function playSentence(word) {
+        if (wordData[word]) {
+          speak(wordData[word].sentence, 0.8);
+        }
+      }
+
+      // 모든 것 재생
+      function playAll(word) {
+        if (wordData[word]) {
+          speak(wordData[word].word, 0.7);
+          setTimeout(() => {
+            speak(wordData[word].sentence, 0.8);
+          }, 1500);
+        }
+      }
+
+      // 녹음 시작/중지
+      async function recordWord(word) {
+        if (!microphoneGranted) {
+          showFeedback(
+            word,
+            "Please allow microphone access first.",
+            "warning"
+          );
+          return;
+        }
+
+        const button = event.target;
+
+        if (!isRecording) {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+              audio: true,
+            });
+            mediaRecorder = new MediaRecorder(stream);
+            audioChunks = [];
+
+            mediaRecorder.ondataavailable = (event) => {
+              audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+              const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+              recordings[word] = audioBlob;
+              showFeedback(word, "Recording saved successfully!", "success");
+              button.textContent = "🎙️ Record";
+              button.classList.remove("recording");
+              stream.getTracks().forEach((track) => track.stop());
+            };
+
+            mediaRecorder.start();
+            isRecording = true;
+            button.textContent = "⏹️ Stop";
+            button.classList.add("recording");
+            showFeedback(
+              word,
+              "Recording... Click stop when finished.",
+              "warning"
+            );
+          } catch (error) {
+            showFeedback(word, "Recording failed. Please try again.", "error");
+          }
+        } else {
+          mediaRecorder.stop();
+          isRecording = false;
+        }
+      }
+
+      // 음성 인식 객체
+      let recognition;
+      let isListening = false;
+
+      // 음성 인식 초기화
+      function initSpeechRecognition() {
+        if ("webkitSpeechRecognition" in window) {
+          recognition = new webkitSpeechRecognition();
+        } else if ("SpeechRecognition" in window) {
+          recognition = new SpeechRecognition();
+        } else {
+          console.log("Speech recognition not supported");
+          return false;
+        }
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.lang = "en-US";
+        recognition.maxAlternatives = 1;
+
+        return true;
+      }
+
+      // 단어 발음 체크 (실제 음성 인식)
+      function checkWord(word) {
+        if (!microphoneGranted) {
+          showFeedback(
+            word,
+            "Please allow microphone access first.",
+            "warning"
+          );
+          return;
+        }
+
+        if (!recognition) {
+          if (!initSpeechRecognition()) {
+            showFeedback(
+              word,
+              "Speech recognition not supported in this browser.",
+              "error"
+            );
+            return;
+          }
+        }
+
+        if (isListening) {
+          showFeedback(word, "Already listening... Please wait.", "warning");
+          return;
+        }
+
+        const targetWord = wordData[word].word.toLowerCase();
+        const button = event.target;
+        const originalText = button.textContent;
+
+        button.textContent = "🎤 Listening...";
+        button.disabled = true;
+        isListening = true;
+
+        showFeedback(
+          word,
+          `Say "${targetWord}" clearly into the microphone`,
+          "warning"
+        );
+
+        recognition.onresult = function (event) {
+          const spokenWord = event.results[0][0].transcript
+            .toLowerCase()
+            .trim();
+          const confidence = event.results[0][0].confidence;
+
+          // 단어 정확도 계산
+          const accuracy = calculateWordAccuracy(
+            targetWord,
+            spokenWord,
+            confidence
+          );
+          updateStats(accuracy);
+
+          // 상세 피드백 생성
+          const feedbackHtml = generateWordFeedback(
+            targetWord,
+            spokenWord,
+            accuracy,
+            confidence
+          );
+
+          if (accuracy >= 90) {
+            showDetailedFeedback(word, feedbackHtml, "success");
+          } else if (accuracy >= 75) {
+            showDetailedFeedback(word, feedbackHtml, "warning");
+          } else {
+            showDetailedFeedback(word, feedbackHtml, "error");
+          }
+
+          resetButton();
+        };
+
+        recognition.onerror = function (event) {
+          showFeedback(
+            word,
+            "Speech recognition error. Please try again.",
+            "error"
+          );
+          resetButton();
+        };
+
+        recognition.onend = function () {
+          resetButton();
+        };
+
+        function resetButton() {
+          button.textContent = originalText;
+          button.disabled = false;
+          isListening = false;
+        }
+
+        try {
+          recognition.start();
+        } catch (error) {
+          showFeedback(word, "Could not start speech recognition.", "error");
+          resetButton();
+        }
+      }
+
+      // 문장 발음 체크 (실제 음성 인식)
+      function checkSentence(word) {
+        if (!microphoneGranted) {
+          showFeedback(
+            word,
+            "Please allow microphone access first.",
+            "warning"
+          );
+          return;
+        }
+
+        if (!recognition) {
+          if (!initSpeechRecognition()) {
+            showFeedback(
+              word,
+              "Speech recognition not supported in this browser.",
+              "error"
+            );
+            return;
+          }
+        }
+
+        if (isListening) {
+          showFeedback(word, "Already listening... Please wait.", "warning");
+          return;
+        }
+
+        const targetSentence = wordData[word].sentence.toLowerCase();
+        const button = event.target;
+        const originalText = button.textContent;
+
+        button.textContent = "🎤 Listening...";
+        button.disabled = true;
+        isListening = true;
+
+        showFeedback(word, "Say the complete sentence clearly", "warning");
+
+        recognition.onresult = function (event) {
+          const spokenSentence = event.results[0][0].transcript
+            .toLowerCase()
+            .trim();
+          const confidence = event.results[0][0].confidence;
+
+          // 문장 정확도 계산
+          const accuracy = calculateSentenceAccuracy(
+            targetSentence,
+            spokenSentence,
+            confidence
+          );
+          updateStats(accuracy);
+
+          // 상세 피드백 생성
+          const feedbackHtml = generateSentenceFeedback(
+            targetSentence,
+            spokenSentence,
+            accuracy,
+            confidence
+          );
+
+          if (accuracy >= 85) {
+            showDetailedFeedback(word, feedbackHtml, "success");
+          } else if (accuracy >= 70) {
+            showDetailedFeedback(word, feedbackHtml, "warning");
+          } else {
+            showDetailedFeedback(word, feedbackHtml, "error");
+          }
+
+          resetButton();
+        };
+
+        recognition.onerror = function (event) {
+          showFeedback(
+            word,
+            "Speech recognition error. Please try again.",
+            "error"
+          );
+          resetButton();
+        };
+
+        recognition.onend = function () {
+          resetButton();
+        };
+
+        function resetButton() {
+          button.textContent = originalText;
+          button.disabled = false;
+          isListening = false;
+        }
+
+        try {
+          recognition.start();
+        } catch (error) {
+          showFeedback(word, "Could not start speech recognition.", "error");
+          resetButton();
+        }
+      }
+
+      // 단어 피드백 생성
+      function generateWordFeedback(target, spoken, accuracy, confidence) {
+        const isCorrect = target === spoken;
+        const status =
+          accuracy >= 90
+            ? "Excellent!"
+            : accuracy >= 75
+            ? "Good!"
+            : "Try again!";
+
+        return `
+        <div><strong>${status} (${accuracy}%)</strong></div>
+        <div class="speech-comparison">
+          <div class="target-text">Target: "${target}"</div>
+          <div class="spoken-text">You said: "${spoken}"</div>
+          <div>
+            ${
+              isCorrect
+                ? `<span class="word-match word-correct">✓ Perfect match!</span>`
+                : `<span class="word-match word-incorrect">✗ Different word</span>`
+            }
+          </div>
+          <div style="margin-top: 4px; font-size: 0.9em;">
+            Recognition confidence: ${Math.round(confidence * 100)}%
+          </div>
+        </div>
+      `;
+      }
+
+      // 문장 피드백 생성
+      function generateSentenceFeedback(target, spoken, accuracy, confidence) {
+        const targetWords = target.split(" ");
+        const spokenWords = spoken.split(" ");
+        const status =
+          accuracy >= 85
+            ? "Great sentence!"
+            : accuracy >= 70
+            ? "Good sentence!"
+            : "Try again!";
+
+        // 단어별 매칭 분석
+        const comparisonHtml = generateWordByWordComparison(
+          targetWords,
+          spokenWords
+        );
+
+        return `
+        <div><strong>${status} (${accuracy}%)</strong></div>
+        <div class="speech-comparison">
+          <div class="target-text">Target: "${target}"</div>
+          <div class="spoken-text">You said: "${spoken}"</div>
+          <div style="margin-top: 6px;">
+            ${comparisonHtml}
+          </div>
+          <div style="margin-top: 4px; font-size: 0.9em;">
+            Recognition confidence: ${Math.round(confidence * 100)}%
+          </div>
+        </div>
+      `;
+      }
+
+      // 단어별 비교 분석
+      function generateWordByWordComparison(targetWords, spokenWords) {
+        const maxLength = Math.max(targetWords.length, spokenWords.length);
+        let comparisonHtml = "";
+
+        for (let i = 0; i < maxLength; i++) {
+          const targetWord = targetWords[i] || "";
+          const spokenWord = spokenWords[i] || "";
+
+          if (targetWord && spokenWord) {
+            if (targetWord === spokenWord) {
+              comparisonHtml += `<span class="word-match word-correct">${targetWord}</span>`;
+            } else {
+              comparisonHtml += `<span class="word-match word-incorrect">${spokenWord}</span>`;
+            }
+          } else if (targetWord && !spokenWord) {
+            comparisonHtml += `<span class="word-match word-missing">(missing: ${targetWord})</span>`;
+          } else if (!targetWord && spokenWord) {
+            comparisonHtml += `<span class="word-match word-extra">(extra: ${spokenWord})</span>`;
+          }
+        }
+
+        return comparisonHtml;
+      }
+
+      // 상세 피드백 표시
+      function showDetailedFeedback(word, htmlContent, type) {
+        const feedbackElement = document.getElementById(`feedback-${word}`);
+        if (feedbackElement) {
+          feedbackElement.innerHTML = htmlContent;
+          feedbackElement.className = `feedback ${type}`;
+        }
+      }
+
+      // 단어 정확도 계산
+      function calculateWordAccuracy(target, spoken, confidence) {
+        if (target === spoken) {
+          // 완전히 일치하면 confidence가 낮아도 높은 점수 부여
+          return Math.max(Math.floor(confidence * 100), 85);
+        }
+
+        // 레벤슈타인 거리를 사용한 유사도 계산
+        const distance = levenshteinDistance(target, spoken);
+        const maxLength = Math.max(target.length, spoken.length);
+        const similarity = (maxLength - distance) / maxLength;
+
+        // 유사도가 높으면 confidence 보정
+        if (similarity > 0.8) {
+          return Math.floor(similarity * Math.max(confidence, 0.7) * 100);
+        }
+
+        return Math.floor(similarity * confidence * 100);
+      }
+      // 문장 정확도 계산
+      function calculateSentenceAccuracy(target, spoken, confidence) {
+        const targetWords = target.split(" ");
+        const spokenWords = spoken.split(" ");
+
+        let matchCount = 0;
+        const maxLength = Math.max(targetWords.length, spokenWords.length);
+
+        for (
+          let i = 0;
+          i < Math.min(targetWords.length, spokenWords.length);
+          i++
+        ) {
+          if (targetWords[i] === spokenWords[i]) {
+            matchCount++;
+          } else {
+            // 부분 일치 점수
+            const wordSimilarity = calculateWordAccuracy(
+              targetWords[i],
+              spokenWords[i],
+              1
+            );
+            matchCount += wordSimilarity / 100;
+          }
+        }
+
+        const accuracy = (matchCount / maxLength) * confidence * 100;
+        return Math.floor(Math.max(0, Math.min(100, accuracy)));
+      }
+
+      // 레벤슈타인 거리 계산
+      function levenshteinDistance(str1, str2) {
+        const matrix = [];
+
+        for (let i = 0; i <= str2.length; i++) {
+          matrix[i] = [i];
+        }
+
+        for (let j = 0; j <= str1.length; j++) {
+          matrix[0][j] = j;
+        }
+
+        for (let i = 1; i <= str2.length; i++) {
+          for (let j = 1; j <= str1.length; j++) {
+            if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+              matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+              matrix[i][j] = Math.min(
+                matrix[i - 1][j - 1] + 1,
+                matrix[i][j - 1] + 1,
+                matrix[i - 1][j] + 1
+              );
+            }
+          }
+        }
+
+        return matrix[str2.length][str1.length];
+      }
+
+      // 피드백 표시
+      function showFeedback(word, message, type) {
+        const feedbackElement = document.getElementById(`feedback-${word}`);
+        if (feedbackElement) {
+          feedbackElement.textContent = message;
+          feedbackElement.className = `feedback ${type}`;
+        } else {
+          // 일반 메시지의 경우
+          const tempDiv = document.createElement("div");
+          tempDiv.className = `feedback ${type}`;
+          tempDiv.textContent = message;
+          tempDiv.style.position = "fixed";
+          tempDiv.style.top = "20px";
+          tempDiv.style.right = "20px";
+          tempDiv.style.padding = "10px 20px";
+          tempDiv.style.borderRadius = "10px";
+          tempDiv.style.backgroundColor =
+            type === "success"
+              ? "#48bb78"
+              : type === "error"
+              ? "#e53e3e"
+              : "#d69e2e";
+          tempDiv.style.color = "white";
+          tempDiv.style.zIndex = "1000";
+          document.body.appendChild(tempDiv);
+
+          setTimeout(() => {
+            document.body.removeChild(tempDiv);
+          }, 3000);
+        }
+      }
+
+      // 통계 업데이트
+      function updateStats(accuracy) {
+        stats.wordsPracticed++;
+        stats.totalAccuracy += accuracy;
+        if (accuracy >= 90) stats.highAccuracyCount++;
+
+        document.getElementById("wordsPracticed").textContent =
+          stats.wordsPracticed;
+        document.getElementById("averageAccuracy").textContent =
+          Math.round(stats.totalAccuracy / stats.wordsPracticed) + "%";
+        document.getElementById("highAccuracy").textContent =
+          stats.highAccuracyCount;
+
+        // 진행률 업데이트
+        const progress =
+          (stats.wordsPracticed / Object.keys(wordData).length) * 100;
+        document.getElementById("progressFill").style.width =
+          Math.min(progress, 100) + "%";
+      }
+
+      // 자동 재생 토글
+      function toggleAutoPlay() {
+        autoPlay = !autoPlay;
+        const button = document.getElementById("autoPlayBtn");
+        button.textContent = autoPlay
+          ? "🔊 Auto Play: ON"
+          : "🔊 Auto Play: OFF";
+      }
+
+      // 녹음 다운로드
+      function downloadRecordings() {
+        if (Object.keys(recordings).length === 0) {
+          showFeedback("", "No recordings to download.", "warning");
+          return;
+        }
+
+        Object.keys(recordings).forEach((word) => {
+          const blob = recordings[word];
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.style.display = "none";
+          a.href = url;
+          a.download = `${word}_pronunciation.wav`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        });
+
+        showFeedback("", "All recordings downloaded!", "success");
+      }
+
+      /// 진행률 리셋
+      function resetProgress() {
+        if (confirm("Are you sure you want to reset all progress?")) {
+          stats = {
+            wordsPracticed: 0,
+            totalAccuracy: 0,
+            highAccuracyCount: 0,
+          };
+          recordings = {};
+
+          document.getElementById("wordsPracticed").textContent = "0";
+          document.getElementById("averageAccuracy").textContent = "0%";
+          document.getElementById("highAccuracy").textContent = "0";
+          document.getElementById("progressFill").style.width = "0%";
+
+          // 모든 피드백 초기화
+          Object.keys(wordData).forEach((word) => {
+            const feedback = document.getElementById(`feedback-${word}`);
+            if (feedback) feedback.textContent = "";
+          });
+
+          showFeedback("", "Progress reset successfully!", "success");
+        }
+      }
+      // 리포트 생성 함수 추가
+      function generateReport() {
+        // 리포트 데이터 수집
+        let reportContent = "Pronunciation Practice Report\n\n";
+        reportContent += `Date: ${new Date().toLocaleString()}\n`;
+        reportContent += `Words Practiced: ${stats.wordsPracticed}\n`;
+        reportContent += `Average Accuracy: ${Math.round(
+          stats.totalAccuracy / stats.wordsPracticed
+        )}%\n`;
+        reportContent += `Words with 90%+ Accuracy: ${stats.highAccuracyCount}\n\n`;
+        reportContent += "Detailed Feedback:\n";
+
+        // 각 단어별 피드백 수집
+        Object.keys(wordData).forEach((word) => {
+          const feedbackElement = document.getElementById(`feedback-${word}`);
+          if (feedbackElement && feedbackElement.textContent.trim() !== "") {
+            reportContent += `\nWord: ${word}\n`;
+            reportContent += `Feedback: ${feedbackElement.textContent}\n`;
+          }
+        });
+
+        // 리포트 다운로드
+        const blob = new Blob([reportContent], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.style.display = "none";
+        a.href = url;
+        a.download = `pronunciation_report_${new Date()
+          .toISOString()
+          .slice(0, 10)}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showFeedback("", "Report generated successfully!", "success");
+      }
+      // 초기화
+      window.addEventListener("load", () => {
+        initVoices();
+        initSpeechRecognition();
+
+        // 자동 마이크 권한 체크
+        navigator.mediaDevices
+          .getUserMedia({ audio: true })
+          .then((stream) => {
+            microphoneGranted = true;
+            document.getElementById("microphoneNotice").style.display = "none";
+            stream.getTracks().forEach((track) => track.stop());
+          })
+          .catch(() => {
+            // 마이크 권한이 없으면 알림 표시
+          });
+      });
+
+      // 키보드 단축키
+      document.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "r") {
+          e.preventDefault();
+          resetProgress();
+        } else if (e.ctrlKey && e.key === "d") {
+          e.preventDefault();
+          downloadRecordings();
+        }
+      });
+    </script>
+  </body>
+</html>
