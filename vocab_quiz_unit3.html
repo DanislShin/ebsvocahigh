@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EBS 필수 영단어 Unit 3 뜻맞추기 퀴즈</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6 max-w-2xl">
+      <h1 class="text-3xl font-bold text-center mb-6">
+        EBS 필수 영단어 Unit 3 뜻맞추기 퀴즈
+      </h1>
+      <div id="quiz" class="bg-white p-6 rounded-lg shadow-md">
+        <!-- Quiz questions will be generated here -->
+      </div>
+      <button
+        id="submitBtn"
+        class="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 hidden"
+        onclick="submitQuiz()"
+      >
+        제출
+      </button>
+      <div id="results" class="mt-6 hidden">
+        <h2 class="text-2xl font-semibold mb-4">채점 결과</h2>
+        <p id="score" class="text-lg mb-4"></p>
+        <div id="feedback"></div>
+      </div>
+    </div>
+
+    <script>
+      const vocab = [
+        { word: "advent", meaning: "출현, 도래" },
+        { word: "adventure", meaning: "모험" },
+        { word: "adversity", meaning: "역경, 고난" },
+        { word: "advertisement", meaning: "광고" },
+        { word: "advice", meaning: "충고" },
+        { word: "advocate", meaning: "지지하다, 변호하다" },
+        { word: "affair", meaning: "일, 문제" },
+        { word: "affect", meaning: "영향을 주다" },
+        { word: "affectionate", meaning: "애정 있는, 다정한" },
+        { word: "affinity", meaning: "친밀감, 좋아함" },
+        { word: "affluent", meaning: "부유한" },
+        { word: "afford", meaning: "여유가 있다, 감당할 수 있다" },
+        { word: "afloat", meaning: "(물에) 뜬" },
+        { word: "agent", meaning: "대리인, 중개상" },
+        { word: "aggressive", meaning: "공격적인, 호전적인" },
+        { word: "aging", meaning: "노화, 노화 과정" },
+        { word: "agony", meaning: "심한 고통, 괴로움" },
+        { word: "agriculture", meaning: "농업" },
+        { word: "ahead of time", meaning: "앞서서, 일찍, 빨리" },
+        { word: "aim", meaning: "목표로 하다, 겨누다" },
+        { word: "aisle", meaning: "통로" },
+        { word: "alert", meaning: "주시하는, 빈틈없는, 기민한" },
+      ];
+
+      function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      function generateQuiz() {
+        const quizDiv = document.getElementById("quiz");
+        vocab.forEach((item, index) => {
+          const questionDiv = document.createElement("div");
+          questionDiv.className = "mb-6";
+          questionDiv.innerHTML = `
+                    <p class="font-semibold mb-2">${index + 1}. "${
+            item.word
+          }"의 뜻은 무엇인가요?</p>
+                `;
+          const options = [item.meaning];
+          while (options.length < 4) {
+            const randomMeaning =
+              vocab[Math.floor(Math.random() * vocab.length)].meaning;
+            if (!options.includes(randomMeaning)) options.push(randomMeaning);
+          }
+          shuffle(options);
+          options.forEach((option, optIndex) => {
+            questionDiv.innerHTML += `
+                        <label class="block mb-1">
+                            <input type="radio" name="q${index}" value="${option}" class="mr-2">
+                            ${optIndex + 1}. ${option}
+                        </label>
+                    `;
+          });
+          quizDiv.appendChild(questionDiv);
+        });
+        document.getElementById("submitBtn").classList.remove("hidden");
+      }
+
+      function submitQuiz() {
+        let score = 0;
+        const feedbackDiv = document.getElementById("feedback");
+        feedbackDiv.innerHTML = "";
+        vocab.forEach((item, index) => {
+          const selected = document.querySelector(
+            `input[name="q${index}"]:checked`
+          );
+          const feedbackP = document.createElement("p");
+          feedbackP.className = "mb-2";
+          if (selected && selected.value === item.meaning) {
+            score++;
+            feedbackP.innerHTML = `${index + 1}. "${item.word}": 정답! (${
+              item.meaning
+            })`;
+            feedbackP.className += " text-green-600";
+          } else {
+            feedbackP.innerHTML = `${index + 1}. "${
+              item.word
+            }": 오답. 정답은 "${item.meaning}"입니다.`;
+            feedbackP.className += " text-red-600";
+          }
+          feedbackDiv.appendChild(feedbackP);
+        });
+        document.getElementById("score").innerText = `점수: ${score} / ${
+          vocab.length
+        } (${((score / vocab.length) * 100).toFixed(2)}%)`;
+        document.getElementById("results").classList.remove("hidden");
+        document.getElementById("submitBtn").disabled = true;
+      }
+
+      window.onload = generateQuiz;
+    </script>
+  </body>
+</html>
