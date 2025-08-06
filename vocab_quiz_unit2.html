@@ -1,0 +1,149 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EBS 필수 영단어 Unit 2 뜻맞추기 퀴즈</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6 max-w-2xl">
+        <h1 class="text-3xl font-bold text-center mb-6">EBS 필수 영단어 Unit 2 뜻맞추기 퀴즈</h1>
+        <div id="quiz" class="bg-white p-6 rounded-lg shadow-md">
+            <!-- Quiz questions will be generated here -->
+        </div>
+        <button id="submitBtn" class="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 hidden" onclick="submitQuiz()">제출</button>
+        <div id="results" class="mt-6 hidden">
+            <h2 class="text-2xl font-semibold mb-4">채점 결과</h2>
+            <p id="score" class="text-lg mb-4"></p>
+            <div id="feedback"></div>
+        </div>
+    </div>
+
+    <script>
+        const vocab = [
+            { word: "accountant", meaning: "회계사" },
+            { word: "accurate", meaning: "정확한" },
+            { word: "accuse", meaning: "비난하다, 고소하다" },
+            { word: "accustomed", meaning: "익숙한, 습관이 된" },
+            { word: "ache", meaning: "아픔, 고통" },
+            { word: "achieve", meaning: "성취하다" },
+            { word: "acknowledge", meaning: "인정하다" },
+            { word: "acid rain", meaning: "산성비" },
+            { word: "acquaintance", meaning: "아는 사람, 지인" },
+            { word: "acquire", meaning: "습득하다, 획득하다" },
+            { word: "acute", meaning: "극심한, 급성의" },
+            { word: "adapt", meaning: "맞추다, 적응하다" },
+            { word: "adjust", meaning: "적응하다, 조절하다" },
+            { word: "addict", meaning: "중독자" },
+            { word: "administer", meaning: "관리하다, 집행하다" },
+            { word: "admirable", meaning: "칭찬할 만한" },
+            { word: "admission", meaning: "입장, 입장료, 입학" },
+            { word: "adolescent", meaning: "사춘기 청소년" },
+            { word: "adopt", meaning: "받아들이다, 입양하다" },
+            { word: "adore", meaning: "아주 좋아하다, 존경하다" },
+            { word: "advance", meaning: "전진, 발전" },
+            { word: "advantage", meaning: "이점, 유리" }
+        ];
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function generateQuiz() {
+            const quizDiv = document.getElementById('quiz');
+            vocab.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-6';
+                questionDiv.innerHTML = `
+                    <p class="font-semibold mb-2">${index + 1}. "${item.word}"의 뜻은 무엇인가요?</p>
+                `;
+                const options = [item.meaning];
+                while (options.length < 4) {
+                    const randomMeaning = vocab[Math.floor(Math.random() * vocab.length)].meaning;
+                    if (!options.includes(randomMeaning)) options.push(randomMeaning);
+                }
+                shuffle(options);
+                options.forEach((option, optIndex) => {
+                    questionDiv.innerHTML += `
+                        <label class="block mb-1">
+                            <input type="radio" name="q${index}" value="${option}" class="mr-2">
+                            ${optIndex + 1}. ${option}
+                        </label>
+                    `;
+                });
+                quizDiv.appendChild(questionDiv);
+            });
+            document.getElementById('submitBtn').classList.remove('hidden');
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            const feedbackDiv = document.getElementById('feedback');
+            feedbackDiv.innerHTML = '';
+            vocab.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const feedbackP = document.createElement('p');
+                feedbackP.className = 'mb-2';
+                if (selected && selected.value === item.meaning) {
+                    score++;
+                    feedbackP.innerHTML = `${index + 1}. "${item.word}": 정답! (${item.meaning})`;
+                    feedbackP.className += ' text-green-600';
+                } else {
+                    feedbackP.innerHTML = `${index + 1}. "${item.word}": 오답. 정답은 "${item.meaning}"입니다.`;
+                    feedbackP.className += ' text-red-600';
+                }
+                feedbackDiv.appendChild(feedbackP);
+            });
+            document.getElementById('score').innerText = `점수: ${score} / ${vocab.length} (${((score / vocab.length) * 100).toFixed(2)}%)`;
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('submitBtn').disabled = true;
+        }
+
+        window.onload = generateQuiz;
+    </script>
+</body>
+</html>
